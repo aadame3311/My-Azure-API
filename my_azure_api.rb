@@ -106,7 +106,7 @@ module MyAzure
             end
 
             parsed_json = JSON.parse(res.read_body)
-            puts JSON.pretty_generate(parsed_json)
+            return JSON.pretty_generate(parsed_json)
         end
     end
 end
