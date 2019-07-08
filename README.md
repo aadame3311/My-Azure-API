@@ -3,7 +3,7 @@ Azure Ruby API built on top of the Azure Rest API. Main purpose is to portray a 
 
 ### set credentials. must do before any api call.
 ```ruby
-MyAzure.set_credentials(tenant_id, client_id, client_secret, subscription_id, application_id)
+MyAzure.set_credentials(tenant_id, client_id, client_secret, subscription_id)
 ```
 the above generates a bearer token that is used throughout all subsequent api calls.
 
