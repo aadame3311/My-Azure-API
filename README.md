@@ -17,7 +17,7 @@ adls = MyAzure::ADLS.new("[adls account name]")
 > https://#{accountName}.azuredatalakestore.net/webhdfs/v1/#{path}?op=LISTSTATUS
 
 ```
-MyAzure::ADLS#list_files(path)
+MyAzure::ADLS#list_status(path)
 ```
 
 #### ADLS list file output json format.
