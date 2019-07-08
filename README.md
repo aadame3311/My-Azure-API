@@ -17,10 +17,6 @@ adls = MyAzure::ADLS.new("[adls account name]")
 ```
 MyAzure::ADLS#list_files(path)
 ```
-i.e.: 
-```ruby
-MyAzure::ADLS.list_files("my/directory/name")
-```
 
 #### ADLS list file output json format.
 ```json
