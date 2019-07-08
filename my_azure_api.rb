@@ -48,7 +48,9 @@ module MyAzure
             http.use_ssl = true
             req = Net::HTTP::Post.new(uri)
 
-            req.body = "grant_type=client_credentials&client_id=#{clientId}&client_secret=#{clientSecret}&resource=https%3A%2F%2Fmanagement.azure.com%2F"
+            req.body = "grant_type=client_credentials&client_id=#{clientId}"+
+                "&client_secret=#{clientSecret}"+
+                "&resource=https%3A%2F%2Fmanagement.azure.com%2F"
 
             puts "contacting #{url}"
             res = http.request(req)
@@ -78,9 +80,10 @@ module MyAzure
             @bearerToken = auth_bearer!
         end
 
-        def list_files(dir) 
+        def list_status(dir) 
 
-            url = "https://#{accountName}.azuredatalakestore.net/webhdfs/v1/#{dir}?op=LISTSTATUS"
+            url = "https://#{accountName}.azuredatalakestore.net" +
+                "/webhdfs/v1/#{dir}?op=LISTSTATUS"
             uri = URI.parse(url)
             http = Net::HTTP.new(uri.host, uri.port)
             req = Net::HTTP::Get.new(uri)
@@ -106,7 +109,7 @@ module MyAzure
             end
 
             parsed_json = JSON.parse(res.read_body)
-            return JSON.pretty_generate(parsed_json)
+            return parsed_json
         end
     end
 end
@@ -120,6 +123,9 @@ _sub = ENV['AZURE_SUBSCRIPTION_ID']
 
 MyAzure.set_credentials(_tId, _cId, _scrt, _sub)
 adls = MyAzure::ADLS.new("r1dltest")
-adls.list_files("")
+files = adls.list_status("") # list files on root directory..
+
+# list all file names under directory.
+puts files
 ###################################################
 
