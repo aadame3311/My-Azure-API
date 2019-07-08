@@ -7,7 +7,7 @@ MyAzure.set_credentials(tenant_id, client_id, client_secret, subscription_id, ap
 ```
 the above generates a bearer token that is used throughout all subsequent api calls.
 
-# ADLS API
+# ADLS Gen1 API
 ### instantiate adls service.
 ```ruby
 adls = MyAzure::ADLS.new("[adls account name]")
