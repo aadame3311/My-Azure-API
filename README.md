@@ -18,7 +18,7 @@ adls = MyAzure::ADLS.new("[adls account name]")
 ```
 MyAzure::ADLS#list_status(path)
 ```
-#### ADLS list file output json format.
+###### ADLS list file output json format.
 ```json
 {
   "FileStatuses": {
