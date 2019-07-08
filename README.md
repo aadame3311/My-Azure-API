@@ -13,11 +13,15 @@ the above generates a bearer token that is used throughout all subsequent api ca
 adls = MyAzure::ADLS.new("[adls account name]")
 ```
 
-### List files in directory.
+### List files in directory (LISTSTATUS).
 > https://#{accountName}.azuredatalakestore.net/webhdfs/v1/#{path}?op=LISTSTATUS
-
 ```
 MyAzure::ADLS#list_status(path)
+```
+### List file status. (GETFILESTATUS)
+> https://#{accountName}.azuredatalakestore.net/webhdfs/v1/#{path}?op=GETFILESTATUS
+```
+MyAzure::ADLS#get_file_status(file_path)
 ```
 
 #### ADLS list file output json format.
