@@ -18,12 +18,6 @@ adls = MyAzure::ADLS.new("[adls account name]")
 ```
 MyAzure::ADLS#list_status(path)
 ```
-### List file status. (GETFILESTATUS)
-> https://#{accountName}.azuredatalakestore.net/webhdfs/v1/#{path}?op=GETFILESTATUS
-```
-MyAzure::ADLS#get_file_status(file_path)
-```
-
 #### ADLS list file output json format.
 ```json
 {
@@ -45,3 +39,9 @@ MyAzure::ADLS#get_file_status(file_path)
   }
 }
 ```
+### List file status. (GETFILESTATUS)
+> https://#{accountName}.azuredatalakestore.net/webhdfs/v1/#{path}?op=GETFILESTATUS
+```
+MyAzure::ADLS#get_file_status(file_path)
+```
+
