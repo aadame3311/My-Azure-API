@@ -3,11 +3,11 @@ Azure Ruby API built on top of the Azure Rest API. Main purpose is to portray a 
 
 ### set credentials. must do before any api call.
 ```ruby
-MyAzure.set_credentials(tenant_id, client_id, client_secret, subscription_id, application_id)
+MyAzure.set_credentials(tenant_id, client_id, client_secret, subscription_id)
 ```
 the above generates a bearer token that is used throughout all subsequent api calls.
 
-# ADLS API
+# ADLS Gen1 API
 ### instantiate adls service.
 ```ruby
 adls = MyAzure::ADLS.new("[adls account name]")
@@ -17,7 +17,7 @@ adls = MyAzure::ADLS.new("[adls account name]")
 > https://#{accountName}.azuredatalakestore.net/webhdfs/v1/#{path}?op=LISTSTATUS
 
 ```
-MyAzure::ADLS#list_files(path)
+MyAzure::ADLS#list_status(path)
 ```
 
 #### ADLS list file output json format.
