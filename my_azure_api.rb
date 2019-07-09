@@ -128,6 +128,30 @@ module MyAzure
             return JSON.parse response.read_body
         end
 
+
+        def mkdir(path, permisions)
+          response = HTTParty.put("https://#{accountName}.azuredatalakestore.net" + 
+                                  "/webhdfs/v1/#{path}?op=MKDIRS" + 
+                                  "&permission=#{permisions}", {
+                    body: "grant_type=client_credentials&client_id=#{clientId}"+
+                        "&client_secret=#{clientSecret}"+
+                        "&resource=https%3A%2F%2Fmanagement.azure.com%2F",
+
+                    headers: {
+                        "Authorization" => "Bearer #{bearerToken}",
+                        "Accept" => "*/*",
+                        "Cache-Control" => 'no-cache',
+                        "Host" => "#{accountName}.azuredatalakestore.net",
+                        "Connection" => 'keep-alive',
+                        "cache-control" => 'no-cache'
+                    },
+                    verify: true
+          })
+
+          return JSON.parse response.read_body
+        end
+
+        
     end
 end
 
