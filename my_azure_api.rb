@@ -126,7 +126,7 @@ module MyAzure
                 _d = _time.day
             end
 
-            _n_dir_path = "/landing_zone/#{_time.year}/#{_m}/#{_d}/"
+            _n_dir_path = "/landing_zone/year=#{_time.year}/month=#{_m}/day=#{_d}/"
             self.mkdir(_n_dir_path, 777)
             filename = "#{_n_dir_path}/#{filename}"
 
