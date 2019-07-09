@@ -1,9 +1,10 @@
 require 'net/http'
 require 'json'
+require 'httparty'
 
 ## Module to access azure services.
 module MyAzure
-
+    include HTTParty
     @@resource = "https://management.azure.com"
 
     # User must first call this function with the right params.
@@ -40,30 +41,15 @@ module MyAzure
 
         # Post request to login azure, returns bearer token 
         # to be used for authentication.
-        def auth_bearer!
-            url = "https://login.microsoftonline.com/#{tenantId}/oauth2/token"
-            uri = URI.parse(url)
-            
-            http = Net::HTTP.new(uri.host, uri.port)
-            http.use_ssl = true
-            req = Net::HTTP::Post.new(uri)
+        def auth_bearer
+            response = HTTParty.get("https://login.microsoftonline.com"+
+                "/#{tenantId}/oauth2/token", {
+                    body: "grant_type=client_credentials&client_id=#{clientId}"+
+                        "&client_secret=#{clientSecret}"+
+                        "&resource=https%3A%2F%2Fmanagement.azure.com%2F"
+            })
 
-            req.body = "grant_type=client_credentials&client_id=#{clientId}"+
-                "&client_secret=#{clientSecret}"+
-                "&resource=https%3A%2F%2Fmanagement.azure.com%2F"
-
-            puts "contacting #{url}"
-            res = http.request(req)
-
-            # Handle responses.
-            case res
-            when Net::HTTPSuccess then
-                puts "Success: bearer token generated."
-            when Net::HTTPError then
-                puts "Error: token could not be generated"
-                return
-            end
-            parsed_json = JSON.parse(res.read_body)
+            parsed_json = JSON.parse response.read_body
             return parsed_json["access_token"]
         end
 
@@ -77,40 +63,71 @@ module MyAzure
             @subscriptionId = MyAzure.get_subscription_id
             
             # Generate bearer token.
-            @bearerToken = auth_bearer!
+            @bearerToken = auth_bearer
         end
 
+        ## list information on all files under the specified dir.
         def list_status(dir) 
+            response = HTTParty.get("https://#{accountName}.azuredatalakestore.net" +
+                    "/webhdfs/v1/#{dir}?op=LISTSTATUS", {
+                    body: "grant_type=client_credentials&client_id=#{clientId}"+
+                        "&client_secret=#{clientSecret}"+
+                        "&resource=https%3A%2F%2Fmanagement.azure.com%2F",
+                    headers: {
+                        "Authorization" => "Bearer #{bearerToken}",
+                        "Accept" => "*/*",
+                        "Cache-Control" => 'no-cache',
+                        "Host" => "#{accountName}.azuredatalakestore.net",
+                        "Connection" => 'keep-alive',
+                        "cache-control" => 'no-cache'
+                    },
+                    verify: true,
+            })
 
-            url = "https://#{accountName}.azuredatalakestore.net" +
-                "/webhdfs/v1/#{dir}?op=LISTSTATUS"
-            uri = URI.parse(url)
-            http = Net::HTTP.new(uri.host, uri.port)
-            req = Net::HTTP::Get.new(uri)
-
-            http.use_ssl = true
-            bearerToken.strip!
-
-            req["Authorization"] = "Bearer #{bearerToken}"
-            req["Accept"] = '*/*'
-            req["Cache-Control"] = 'no-cache'
-            req["Host"] = "#{accountName}.azuredatalakestore.net"
-            req["Connection"] = 'keep-alive'
-            req["cache-control"] = 'no-cache'
-
-            puts "contacting #{uri}"
-            res = http.request(req)
-            
-            # Handle responses.
-            case res
-            when Net::HTTPError then
-                puts "Error: files could not be retrieved."
-                return
-            end
-
-            parsed_json = JSON.parse(res.read_body)
-            return parsed_json
+            return JSON.parse response.read_body
         end
+
+        ## list information on a single file.
+        def get_file_status(file_path)
+            response = HTTParty.get("https://#{accountName}.azuredatalakestore.net" +
+                "/webhdfs/v1/#{file_path}?op=GETFILESTATUS", {
+                body: "grant_type=client_credentials&client_id=#{clientId}"+
+                    "&client_secret=#{clientSecret}"+
+                    "&resource=https%3A%2F%2Fmanagement.azure.com%2F",
+                headers: {
+                    "Authorization" => "Bearer #{bearerToken}",
+                    "Accept" => "*/*",
+                    "Cache-Control" => 'no-cache',
+                    "Host" => "#{accountName}.azuredatalakestore.net",
+                    "Connection" => 'keep-alive',
+                    "cache-control" => 'no-cache'
+                },
+                verify: true,
+            })
+
+            return JSON.parse response.read_body
+        end
+
+        def create_file(filename, file, overwrite)
+            response = HTTParty.put("https://#{accountName}.azuredatalakestore.net" + 
+                "/webhdfs/v1/#{filename}?op=CREATE"+ 
+                "&overwrite=#{overwrite}", {
+                    body: {
+                        data: file
+                    },
+                    headers: {
+                        "Authorization" => "Bearer #{bearerToken}",
+                        "Accept" => "*/*",
+                        "Cache-Control" => 'no-cache',
+                        "Host" => "#{accountName}.azuredatalakestore.net",
+                        "Connection" => 'keep-alive',
+                        "cache-control" => 'no-cache'
+                    },
+                    verify: true
+            })
+            return JSON.parse response.read_body
+        end
+
     end
 end
 
@@ -123,9 +140,9 @@ _sub = ENV['AZURE_SUBSCRIPTION_ID']
 
 MyAzure.set_credentials(_tId, _cId, _scrt, _sub)
 adls = MyAzure::ADLS.new("r1dltest")
-files = adls.list_status("") # list files on root directory..
 
-# list all file names under directory.
-puts files
+f = File.open("InputFiles/test.txt", "r")
+puts adls.create_file("test.txt", f, true)
+
 ###################################################
 
