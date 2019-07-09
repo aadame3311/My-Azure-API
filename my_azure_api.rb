@@ -1,6 +1,7 @@
 require 'net/http'
 require 'json'
 require 'httparty'
+require 'time'
 
 ## Module to access azure services.
 module MyAzure
@@ -110,6 +111,14 @@ module MyAzure
 
         # upload file to ADLS
         def create(filename, file, overwrite)
+            # Create hierarchical directoy based on current time for
+            # data lake organization.
+            _time = Time.new
+            _n_dir_path = "/#{_time.year}/#{_time.month}/#{_time.day}/"
+            self.mkdir(_n_dir_path, 777)
+            filename = "#{_n_dir_path}/#{filename}"
+
+            # Execute request.
             response = HTTParty.put("https://#{accountName}.azuredatalakestore.net" + 
                 "/webhdfs/v1/#{filename}?op=CREATE"+ 
                 "&overwrite=#{overwrite}", {
@@ -131,7 +140,7 @@ module MyAzure
             puts "File uploaded"
         end
 
-
+        # Creates directories.
         def mkdir(path, permisions)
           response = HTTParty.put("https://#{accountName}.azuredatalakestore.net" + 
                                   "/webhdfs/v1/#{path}?op=MKDIRS" + 
