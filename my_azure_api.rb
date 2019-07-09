@@ -112,20 +112,22 @@ module MyAzure
             response = HTTParty.put("https://#{accountName}.azuredatalakestore.net" + 
                 "/webhdfs/v1/#{filename}?op=CREATE"+ 
                 "&overwrite=#{overwrite}", {
-                    body: {
-                        data: file
-                    },
+                    body: file.read,
                     headers: {
                         "Authorization" => "Bearer #{bearerToken}",
                         "Accept" => "*/*",
                         "Cache-Control" => 'no-cache',
                         "Host" => "#{accountName}.azuredatalakestore.net",
                         "Connection" => 'keep-alive',
-                        "cache-control" => 'no-cache'
+                        "cache-control" => 'no-cache',
+                        "accept-encoding" => 'gzip, deflate',
+                        "referer" => "https://#{accountName}.azuredatalakestore.net"+
+                            "/webhdfs/v1/#{filename}?op=CREATE&overwrite=#{overwrite}",
                     },
                     verify: true
             })
-            return JSON.parse response.read_body
+
+            puts "File uploaded"
         end
 
     end
