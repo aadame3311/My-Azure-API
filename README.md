@@ -44,4 +44,10 @@ MyAzure::ADLS#list_status(path)
 ```
 MyAzure::ADLS#get_file_status(file_path)
 ```
+### Upload file. (CREATE)
+> https://#{accountName}.azuredatalakestore.net/webhdfs/v1/#{filename}?op=CREATE&overwrite=#{overwrite}
+```
+MyAzure::ADLS#create(filename, file, overwrite)
+```
+
 
