@@ -114,7 +114,19 @@ module MyAzure
             # Create hierarchical directoy based on current time for
             # data lake organization.
             _time = Time.new
-            _n_dir_path = "/#{_time.year}/#{_time.month}/#{_time.day}/"
+            # Adds 0 before digit if less than ten (03, 04, 10).
+            if _time.month < 10
+                _m = "0#{_time.month}"
+            else 
+                _m = _time.month
+            end
+            if _time.day < 10
+                _d = "0#{_time.day}"
+            else
+                _d = _time.day
+            end
+            
+            _n_dir_path = "/#{_time.year}/#{_m}/#{_d}/"
             self.mkdir(_n_dir_path, 777)
             filename = "#{_n_dir_path}/#{filename}"
 
