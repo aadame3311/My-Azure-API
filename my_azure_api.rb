@@ -108,7 +108,8 @@ module MyAzure
             return JSON.parse response.read_body
         end
 
-        def create_file(filename, file, overwrite)
+        # upload file to ADLS
+        def create(filename, file, overwrite)
             response = HTTParty.put("https://#{accountName}.azuredatalakestore.net" + 
                 "/webhdfs/v1/#{filename}?op=CREATE"+ 
                 "&overwrite=#{overwrite}", {
