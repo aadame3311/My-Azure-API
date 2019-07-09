@@ -132,17 +132,3 @@ module MyAzure
 end
 
 
-##################### TESTING #####################
-_tId = ENV['AZURE_TENANT_ID']
-_cId = ENV['AZURE_CLIENT_ID']
-_scrt = ENV['AZURE_CLIENT_SECRET']
-_sub = ENV['AZURE_SUBSCRIPTION_ID']
-
-MyAzure.set_credentials(_tId, _cId, _scrt, _sub)
-adls = MyAzure::ADLS.new("r1dltest")
-
-f = File.open("InputFiles/test.txt", "r")
-puts adls.create_file("test.txt", f, true)
-
-###################################################
-
