@@ -87,6 +87,49 @@ module MyAzure
             return JSON.parse response.read_body
         end
 
+        ## Displays the content of the file specified
+        def open_file(file_path)
+                response = HTTParty.get("https://#{accountName}.azuredatalakestore.net" +
+                    "/webhdfs/v1/#{file_path}?op=OPEN", {
+                    body: "grant_type=client_credentials&client_id=#{clientId}"+
+                            "&client_secret=#{clientSecret}"+
+                            "&resource=https%3A%2F%2Fmanagement.azure.com%2F",
+                    headers: {
+                            "Authorization" => "Bearer #{bearerToken}",
+                            "Accept" => "*/*",
+                            "Cache-Control" => 'no-cache',
+                            "Host" => "#{accountName}.azuredatalakestore.net",
+                            "Connection" => 'keep-alive',
+                            "cache-control" => 'no-cache'
+                    },
+                    verify: true,
+                })
+        
+                return response.read_body
+        end
+
+                ## Displays metadata summary of the given file
+                def get_file_summary(file_path)
+                    response = HTTParty.get("https://#{accountName}.azuredatalakestore.net" +
+                        "/webhdfs/v1/#{file_path}?op=GETCONTENTSUMMARY", {
+                        body: "grant_type=client_credentials&client_id=#{clientId}"+
+                                "&client_secret=#{clientSecret}"+
+                                "&resource=https%3A%2F%2Fmanagement.azure.com%2F",
+                        headers: {
+                                "Authorization" => "Bearer #{bearerToken}",
+                                "Accept" => "*/*",
+                                "Cache-Control" => 'no-cache',
+                                "Host" => "#{accountName}.azuredatalakestore.net",
+                                "Connection" => 'keep-alive',
+                                "cache-control" => 'no-cache'
+                        },
+                        verify: true,
+                    })
+            
+                    return  JSON.parse response.read_body
+            end
+
+
         ## list information on a single file.
         def get_file_status(file_path)
             response = HTTParty.get("https://#{accountName}.azuredatalakestore.net" +
