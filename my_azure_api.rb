@@ -110,7 +110,7 @@ module MyAzure
         end
 
         # upload file to ADLS
-        def create(filename, file, overwrite)
+        def create(filename, file, overwrite, category, source, type)
             # Create hierarchical directoy based on current time for
             # data lake organization.
             _time = Time.new
@@ -126,7 +126,8 @@ module MyAzure
                 _d = _time.day
             end
 
-            _n_dir_path = "/landing_zone/year=#{_time.year}/month=#{_m}/day=#{_d}/"
+            _n_dir_path = "/landing_zone/#{category}/#{source}/#{type}"+"
+                /year=#{_time.year}/month=#{_m}/day=#{_d}/"
             self.mkdir(_n_dir_path, 777)
             filename = "#{_n_dir_path}/#{filename}"
 
