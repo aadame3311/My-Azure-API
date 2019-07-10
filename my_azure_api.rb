@@ -88,7 +88,7 @@ module MyAzure
             return JSON.parse response.read_body
         end
 
-        ## Displays the content of the file specified
+        ## Displays the contents of the file path specified
         def open_file(file_path)
                 response = HTTParty.get("https://#{accountName}.azuredatalakestore.net" +
                     "/webhdfs/v1/#{file_path}?op=OPEN", {
@@ -109,7 +109,7 @@ module MyAzure
                 return response.read_body
         end
 
-                ## Displays metadata summary of the given file
+                ## Displays content summary of the given file path
                 def get_file_summary(file_path)
                     response = HTTParty.get("https://#{accountName}.azuredatalakestore.net" +
                         "/webhdfs/v1/#{file_path}?op=GETCONTENTSUMMARY", {
