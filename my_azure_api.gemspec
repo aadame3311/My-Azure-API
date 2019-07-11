@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
   s.email       = 'email@email.com'
   s.files       = ["lib/my_azure_api.rb"]
   s.homepage    =
-    ''
+    'https://github.com/aadame3311/My-Azure-API'
   s.license       = 'MIT'
+  s.add_dependency 'httparty'
 end
