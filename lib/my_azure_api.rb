@@ -192,7 +192,7 @@ module MyAzure
                     },
                     verify: true
             })
-
+            puts "the response has a code of #{response.code}"
             puts "File uploaded"
         end
 
