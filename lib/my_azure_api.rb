@@ -178,7 +178,6 @@ module MyAzure
             response = HTTParty.put("https://#{accountName}.azuredatalakestore.net" + 
                 "/webhdfs/v1/#{filename}?op=CREATE"+ 
                 "&overwrite=#{overwrite}", {
-                    body: file.read,
                     headers: {
                         "Authorization" => "Bearer #{bearerToken}",
                         "Accept" => "*/*",
@@ -192,10 +191,42 @@ module MyAzure
                     },
                     verify: true
             })
+
+            chunk_size = 4 * 1024 * 1024
+            count = 1
+            until file.eof?
+              puts "uploading file_chunk #{count}"
+              file_chunk = file.read(chunk_size)
+              append(filename, file_chunk)
+              count += 1
+            end
+
             puts "the response has a code of #{response.code}"
             puts "File uploaded"
         end
 
+        def append(filename, content)
+            # Execute request.
+            response = HTTParty.post("https://#{accountName}.azuredatalakestore.net" + 
+                "/webhdfs/v1/#{filename}?op=APPEND", {
+                    body: content,
+                    headers: {
+                        "Authorization" => "Bearer #{bearerToken}",
+                        "Accept" => "*/*",
+                        "Cache-Control" => 'no-cache',
+                        "Host" => "#{accountName}.azuredatalakestore.net",
+                        "Connection" => 'keep-alive',
+                        "cache-control" => 'no-cache',
+                        "accept-encoding" => 'gzip, deflate',
+                        "referer" => "https://#{accountName}.azuredatalakestore.net"+
+                            "/webhdfs/v1/#{filename}?op=APPEND",
+                    },
+                    verify: true
+            })
+            puts response.body
+            puts "the response has a code of #{response.code}"
+            puts "File uploaded"
+        end
         # Creates directories.
         def mkdir(path, permisions)
           response = HTTParty.put("https://#{accountName}.azuredatalakestore.net" + 
