@@ -191,7 +191,7 @@ module MyAzure
                     },
                     verify: true
             })
-
+            puts "the content of the file are: #{file.read}"
             chunk_size = 4 * 1024 * 1024
             count = 1
             until file.eof?
