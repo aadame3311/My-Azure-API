@@ -47,10 +47,25 @@ module MyAzure
                 "/#{tenantId}/oauth2/token", {
                     body: "grant_type=client_credentials&client_id=#{clientId}"+
                         "&client_secret=#{clientSecret}"+
-                        "&resource=https%3A%2F%2Fmanagement.azure.com%2F"
+                        "&resource=https%3A%2F%2Fmanagement.azure.com%2F" +
+                        "&Content-Type=application/x-www-form-urlencoded"
             })
 
             parsed_json = JSON.parse response.read_body
+            return parsed_json["access_token"]
+        end
+
+        # Post request to login azure, returns bearer token 
+        # to be used for authentication in Active Directory.
+        def auth_bearer_aad
+            response = HTTParty.get("https://login.microsoftonline.com/#{tenantId}/oauth2/v2.0/token", {
+                    body: "grant_type=client_credentials&client_id=#{clientId}"+
+                        "&client_secret=#{clientSecret}"+
+                        "&scope=https%3A%2F%2Fgraph.microsoft.com%2F.default"
+            })
+
+            parsed_json = JSON.parse response.read_body
+            #print(parsed_json)
             return parsed_json["access_token"]
         end
 
@@ -64,7 +79,8 @@ module MyAzure
             @subscriptionId = MyAzure.get_subscription_id
             
             # Generate bearer token.
-            @bearerToken = auth_bearer
+            @bearerToken = auth_bearer_aad
+            #print ("\n\n["+@bearerToken+"]")
         end
 
         ## list information on all files under the specified dir.
@@ -75,7 +91,7 @@ module MyAzure
                         "&client_secret=#{clientSecret}"+
                         "&resource=https%3A%2F%2Fmanagement.azure.com%2F",
                     headers: {
-                        "Authorization" => "Bearer #{bearerToken}",
+                        "Authorization" => "Bearer " + @bearerToken,
                         "Accept" => "*/*",
                         "Cache-Control" => 'no-cache',
                         "Host" => "#{accountName}.azuredatalakestore.net",
@@ -219,7 +235,42 @@ module MyAzure
           return JSON.parse response.read_body
         end
 
+
         
+        ## Displays a list of users in the active directory
+        def list_users()
+                response = HTTParty.get("https://graph.microsoft.com/v1.0/users", {  
+                headers: {
+                            "Authorization" => "Bearer #{bearerToken}",
+                            "Host" => 'graph.microsoft.com'  
+                    }
+                })
+            return JSON.parse response.read_body
+        end
+
+        ## Displays the of the active directory
+        def list_groups()
+                response = HTTParty.get("https://graph.microsoft.com/v1.0/groups", {  
+                headers: {
+                            "Authorization" => "Bearer #{bearerToken}",
+                            "Host" => 'graph.microsoft.com'   
+                    }
+                })
+            return JSON.parse response.read_body
+        end
+
+        ## Displays the of the active directory
+        def list_group_members(dept_id)
+                response = HTTParty.get("https://graph.microsoft.com/v1.0/groups/#{dept_id}/members", {  
+                headers: {
+                            "Authorization" => "Bearer #{bearerToken}",
+                            "Host" => 'graph.microsoft.com'   
+                    }
+                })
+            return JSON.parse response.read_body
+        end
+        
+
     end
 end
 
