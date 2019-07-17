@@ -153,33 +153,12 @@ module MyAzure
             return JSON.parse response.read_body
         end
 
-        # upload file to ADLS
-        def create(filename, file, overwrite, category, source, type)
-            # Create hierarchical directoy based on current time for
-            # data lake organization.
-            _time = Time.new
-            # Adds 0 before digit if less than ten (03, 04, 10).
-            if _time.month < 10
-                _m = "0#{_time.month}"
-            else 
-                _m = _time.month
-            end
-            if _time.day < 10
-                _d = "0#{_time.day}"
-            else
-                _d = _time.day
-            end
 
-            _n_dir_path = "/landing_zone/#{category}/#{source}/#{type}"+"
-                /year=#{_time.year}/month=#{_m}/day=#{_d}/"
-            self.mkdir(_n_dir_path, 777)
-            filename = "#{_n_dir_path}/#{filename}"
-
+        def append(filename, content)
             # Execute request.
-            response = HTTParty.put("https://#{accountName}.azuredatalakestore.net" + 
-                "/webhdfs/v1/#{filename}?op=CREATE"+ 
-                "&overwrite=#{overwrite}", {
-                    body: file.read,
+            response = HTTParty.post("https://#{accountName}.azuredatalakestore.net" + 
+                "/webhdfs/v1/#{filename}?op=APPEND", {
+                    body: content,
                     headers: {
                         "Authorization" => "Bearer #{bearerToken}",
                         "Accept" => "*/*",
@@ -189,14 +168,14 @@ module MyAzure
                         "cache-control" => 'no-cache',
                         "accept-encoding" => 'gzip, deflate',
                         "referer" => "https://#{accountName}.azuredatalakestore.net"+
-                            "/webhdfs/v1/#{filename}?op=CREATE&overwrite=#{overwrite}",
+                            "/webhdfs/v1/#{filename}?op=APPEND",
                     },
                     verify: true
             })
-
+            puts response.body
+            puts "the response has a code of #{response.code}"
             puts "File uploaded"
         end
-
         # Creates directories.
         def mkdir(path, permisions)
           response = HTTParty.put("https://#{accountName}.azuredatalakestore.net" + 

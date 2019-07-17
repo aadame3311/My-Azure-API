@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: MyAzure::ADLS
+  
+    &mdash; Documentation by YARD 0.9.20
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "MyAzure::ADLS";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (A)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span>
+     &raquo; 
+    <span class="title">ADLS</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: MyAzure::ADLS
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">MyAzure::ADLS</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/my_azure_api.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>ADLS Gen 1 service API calls for easy use.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create-instance_method" title="#create (instance method)">#<strong>create</strong>(filename, file, overwrite, category, source, type)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>upload file to ADLS.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_file_status-instance_method" title="#get_file_status (instance method)">#<strong>get_file_status</strong>(file_path)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>list information on a single file.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_file_summary-instance_method" title="#get_file_summary (instance method)">#<strong>get_file_summary</strong>(file_path)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Displays content summary of the given file path.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(accountName)  &#x21d2; ADLS </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Initializing a new ADLS instance only requires the name of the data lake.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#list_status-instance_method" title="#list_status (instance method)">#<strong>list_status</strong>(dir)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>list information on all files under the specified dir.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#mkdir-instance_method" title="#mkdir (instance method)">#<strong>mkdir</strong>(path, permisions)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates directories.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#open_file-instance_method" title="#open_file (instance method)">#<strong>open_file</strong>(file_path)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Displays the contents of the file path specified.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(accountName)  &#x21d2; <tt><span class='object_link'><a href="" title="MyAzure::ADLS (class)">ADLS</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Initializing a new ADLS instance only requires the name of the data lake.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_accountName'>accountName</span><span class='rparen'>)</span>
+    <span class='ivar'>@accountName</span> <span class='op'>=</span> <span class='id identifier rubyid_accountName'>accountName</span>
+    <span class='ivar'>@resource</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_resource'><span class='object_link'><a href="../MyAzure.html#get_resource-class_method" title="MyAzure.get_resource (method)">get_resource</a></span></span>
+    <span class='ivar'>@tenantId</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_tenant_id'><span class='object_link'><a href="../MyAzure.html#get_tenant_id-class_method" title="MyAzure.get_tenant_id (method)">get_tenant_id</a></span></span>
+    <span class='ivar'>@clientId</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_client_id'><span class='object_link'><a href="../MyAzure.html#get_client_id-class_method" title="MyAzure.get_client_id (method)">get_client_id</a></span></span>
+    <span class='ivar'>@clientSecret</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_client_secret'><span class='object_link'><a href="../MyAzure.html#get_client_secret-class_method" title="MyAzure.get_client_secret (method)">get_client_secret</a></span></span>
+    <span class='ivar'>@subscriptionId</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_subscription_id'><span class='object_link'><a href="../MyAzure.html#get_subscription_id-class_method" title="MyAzure.get_subscription_id (method)">get_subscription_id</a></span></span>
+    
+    <span class='comment'># Generate bearer token.
+</span>    <span class='ivar'>@bearerToken</span> <span class='op'>=</span> <span class='id identifier rubyid_auth_bearer'>auth_bearer</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="create-instance_method">
+  
+    #<strong>create</strong>(filename, file, overwrite, category, source, type)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>upload file to ADLS</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 160</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_overwrite'>overwrite</span><span class='comma'>,</span> <span class='id identifier rubyid_category'>category</span><span class='comma'>,</span> <span class='id identifier rubyid_source'>source</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='comment'># Create hierarchical directoy based on current time for
+</span>    <span class='comment'># data lake organization.
+</span>    <span class='id identifier rubyid__time'>_time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='comment'># Adds 0 before digit if less than ten (03, 04, 10).
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid__time'>_time</span><span class='period'>.</span><span class='id identifier rubyid_month'>month</span> <span class='op'>&lt;</span> <span class='int'>10</span>
+        <span class='id identifier rubyid__m'>_m</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__time'>_time</span><span class='period'>.</span><span class='id identifier rubyid_month'>month</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>else</span> 
+        <span class='id identifier rubyid__m'>_m</span> <span class='op'>=</span> <span class='id identifier rubyid__time'>_time</span><span class='period'>.</span><span class='id identifier rubyid_month'>month</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid__time'>_time</span><span class='period'>.</span><span class='id identifier rubyid_day'>day</span> <span class='op'>&lt;</span> <span class='int'>10</span>
+        <span class='id identifier rubyid__d'>_d</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__time'>_time</span><span class='period'>.</span><span class='id identifier rubyid_day'>day</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>else</span>
+        <span class='id identifier rubyid__d'>_d</span> <span class='op'>=</span> <span class='id identifier rubyid__time'>_time</span><span class='period'>.</span><span class='id identifier rubyid_day'>day</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid__n_dir_path'>_n_dir_path</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/landing_zone/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_category'>category</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source'>source</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>
+        /year=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__time'>_time</span><span class='period'>.</span><span class='id identifier rubyid_year'>year</span><span class='embexpr_end'>}</span><span class='tstring_content'>/month=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__m'>_m</span><span class='embexpr_end'>}</span><span class='tstring_content'>/day=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__d'>_d</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mkdir'>mkdir</span><span class='lparen'>(</span><span class='id identifier rubyid__n_dir_path'>_n_dir_path</span><span class='comma'>,</span> <span class='int'>777</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__n_dir_path'>_n_dir_path</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_filename'>filename</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+
+    <span class='comment'># Execute request.
+</span>    <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> 
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/webhdfs/v1/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_filename'>filename</span><span class='embexpr_end'>}</span><span class='tstring_content'>?op=CREATE</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span> 
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;overwrite=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_overwrite'>overwrite</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+            <span class='label'>body:</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='comma'>,</span>
+            <span class='label'>headers:</span> <span class='lbrace'>{</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Authorization</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bearer </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bearerToken'>bearerToken</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Accept</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>*/*</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cache-Control</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no-cache</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Host</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Connection</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>keep-alive</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cache-control</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no-cache</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>accept-encoding</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gzip, deflate</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>referer</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/webhdfs/v1/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_filename'>filename</span><span class='embexpr_end'>}</span><span class='tstring_content'>?op=CREATE&amp;overwrite=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_overwrite'>overwrite</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='rbrace'>}</span><span class='comma'>,</span>
+            <span class='label'>verify:</span> <span class='kw'>true</span>
+    <span class='rbrace'>}</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>File uploaded</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_file_status-instance_method">
+  
+    #<strong>get_file_status</strong>(file_path)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>list information on a single file.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 139</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_file_status'>get_file_status</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/webhdfs/v1/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_file_path'>file_path</span><span class='embexpr_end'>}</span><span class='tstring_content'>?op=GETFILESTATUS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+        <span class='label'>body:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>grant_type=client_credentials&amp;client_id=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_clientId'>clientId</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;client_secret=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_clientSecret'>clientSecret</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;resource=https%3A%2F%2Fmanagement.azure.com%2F</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+        <span class='label'>headers:</span> <span class='lbrace'>{</span>
+            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Authorization</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bearer </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bearerToken'>bearerToken</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Accept</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>*/*</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cache-Control</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no-cache</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Host</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Connection</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>keep-alive</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cache-control</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no-cache</span><span class='tstring_end'>&#39;</span></span>
+        <span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>verify:</span> <span class='kw'>true</span><span class='comma'>,</span>
+    <span class='rbrace'>}</span><span class='rparen'>)</span>
+
+    <span class='kw'>return</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_read_body'>read_body</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_file_summary-instance_method">
+  
+    #<strong>get_file_summary</strong>(file_path)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Displays content summary of the given file path</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 117</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_file_summary'>get_file_summary</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/webhdfs/v1/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_file_path'>file_path</span><span class='embexpr_end'>}</span><span class='tstring_content'>?op=GETCONTENTSUMMARY</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+            <span class='label'>body:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>grant_type=client_credentials&amp;client_id=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_clientId'>clientId</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;client_secret=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_clientSecret'>clientSecret</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;resource=https%3A%2F%2Fmanagement.azure.com%2F</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='label'>headers:</span> <span class='lbrace'>{</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Authorization</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bearer </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bearerToken'>bearerToken</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Accept</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>*/*</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cache-Control</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no-cache</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Host</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Connection</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>keep-alive</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cache-control</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no-cache</span><span class='tstring_end'>&#39;</span></span>
+            <span class='rbrace'>}</span><span class='comma'>,</span>
+            <span class='label'>verify:</span> <span class='kw'>true</span><span class='comma'>,</span>
+        <span class='rbrace'>}</span><span class='rparen'>)</span>
+
+        <span class='kw'>return</span>  <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_read_body'>read_body</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="list_status-instance_method">
+  
+    #<strong>list_status</strong>(dir)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>list information on all files under the specified dir.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 75</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_list_status'>list_status</span><span class='lparen'>(</span><span class='id identifier rubyid_dir'>dir</span><span class='rparen'>)</span> 
+    <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/webhdfs/v1/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_dir'>dir</span><span class='embexpr_end'>}</span><span class='tstring_content'>?op=LISTSTATUS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+            <span class='label'>body:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>grant_type=client_credentials&amp;client_id=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_clientId'>clientId</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;client_secret=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_clientSecret'>clientSecret</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;resource=https%3A%2F%2Fmanagement.azure.com%2F</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='label'>headers:</span> <span class='lbrace'>{</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Authorization</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bearer </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='ivar'>@bearerToken</span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Accept</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>*/*</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cache-Control</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no-cache</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Host</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Connection</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>keep-alive</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cache-control</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no-cache</span><span class='tstring_end'>&#39;</span></span>
+            <span class='rbrace'>}</span><span class='comma'>,</span>
+            <span class='label'>verify:</span> <span class='kw'>true</span><span class='comma'>,</span>
+    <span class='rbrace'>}</span><span class='rparen'>)</span>
+
+    <span class='kw'>return</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_read_body'>read_body</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="mkdir-instance_method">
+  
+    #<strong>mkdir</strong>(path, permisions)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates directories.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 204</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_mkdir'>mkdir</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_permisions'>permisions</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> 
+                          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/webhdfs/v1/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path'>path</span><span class='embexpr_end'>}</span><span class='tstring_content'>?op=MKDIRS</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> 
+                          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;permission=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_permisions'>permisions</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+            <span class='label'>body:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>grant_type=client_credentials&amp;client_id=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_clientId'>clientId</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;client_secret=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_clientSecret'>clientSecret</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;resource=https%3A%2F%2Fmanagement.azure.com%2F</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+
+            <span class='label'>headers:</span> <span class='lbrace'>{</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Authorization</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bearer </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bearerToken'>bearerToken</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Accept</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>*/*</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cache-Control</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no-cache</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Host</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Connection</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>keep-alive</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cache-control</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no-cache</span><span class='tstring_end'>&#39;</span></span>
+            <span class='rbrace'>}</span><span class='comma'>,</span>
+            <span class='label'>verify:</span> <span class='kw'>true</span>
+  <span class='rbrace'>}</span><span class='rparen'>)</span>
+
+  <span class='kw'>return</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_read_body'>read_body</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="open_file-instance_method">
+  
+    #<strong>open_file</strong>(file_path)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Displays the contents of the file path specified</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 96</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_open_file'>open_file</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/webhdfs/v1/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_file_path'>file_path</span><span class='embexpr_end'>}</span><span class='tstring_content'>?op=OPEN</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+            <span class='label'>body:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>grant_type=client_credentials&amp;client_id=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_clientId'>clientId</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;client_secret=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_clientSecret'>clientSecret</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;resource=https%3A%2F%2Fmanagement.azure.com%2F</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='label'>headers:</span> <span class='lbrace'>{</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Authorization</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bearer </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bearerToken'>bearerToken</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Accept</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>*/*</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cache-Control</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no-cache</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Host</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Connection</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>keep-alive</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cache-control</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no-cache</span><span class='tstring_end'>&#39;</span></span>
+            <span class='rbrace'>}</span><span class='comma'>,</span>
+            <span class='label'>verify:</span> <span class='kw'>true</span><span class='comma'>,</span>
+        <span class='rbrace'>}</span><span class='rparen'>)</span>
+
+        <span class='kw'>return</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_read_body'>read_body</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Wed Jul 17 15:58:20 2019 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.20 (ruby-2.6.3).
+</div>
+
+    </div>
+  </body>
+</html>
