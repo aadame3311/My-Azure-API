@@ -3,18 +3,14 @@ require 'json'
 require 'httparty'
 require 'time'
 
-## Module to access azure services.
+# Module to access azure services.
+#   Has API calls for managing the file system on the data lake in the ADLS class.
+#   Has API calls for managing users, groups, and permission in the GRAPH class.
 module MyAzure
     include HTTParty
-    @@resource = "https://management.azure.com"
 
-    # User must first call this function with the right params.
-    def self.set_credentials(tenant, client, secret, subscription)
-        @@tenantId = tenant
-        @@clientId = client
-        @@clientSecret = secret
-        @@subscriptionId = subscription
-    end
+    private 
+    @@resource = "https://management.azure.com"
 
     def self.get_resource()
         @@resource
@@ -33,13 +29,30 @@ module MyAzure
     end
 
 
-    ## ADLS Gen 1 service Api calls
+    public
+    # User must first call this function with the proper credentinals before
+    # making any API calls.
+    # @param tenant [String] the tenant id for the Azure Data Lake
+    # @param client [String] the client id for the Azure Data Lake
+    # @param secret [String] the secret id for the Azure Data Lake
+    # @param subscription [String] the subsription id that the Azure Data Lake is under
+    def self.set_credentials(tenant, client, secret, subscription)
+        @@tenantId = tenant
+        @@clientId = client
+        @@clientSecret = secret
+        @@subscriptionId = subscription
+    end
+
+
+
+    # ADLS Gen 1 service Api calls
+    # This Class handles all the File System API for the Azure Data Lake
     class ADLS 
     private
-        attr_reader :resource, :tenantId, :clientId
+        attr_reader :resource, :tenantId, :cli2entId
         attr_reader :clientSecret, :subcriptionId
         attr_reader :bearerToken, :accountName
-
+        
         # Post request to login azure, returns bearer token 
         # to be used for authentication.
         def auth_bearer
@@ -56,6 +69,9 @@ module MyAzure
         end
 
     public
+        # To initialize an instance of ADLS all the is need is the name of the
+        # data lake.
+        # @param accountName [String] name of Azure Data Lake
         def initialize(accountName)
             @accountName = accountName
             @resource = MyAzure.get_resource
@@ -68,7 +84,8 @@ module MyAzure
             @bearerToken = auth_bearer
         end
 
-        ## list information on all files under the specified dir.
+        # list information on all files under the specified dir.
+        # @param dir [String] the directory path in Azure Data Lake
         def list_status(dir) 
             response = HTTParty.get("https://#{accountName}.azuredatalakestore.net" +
                     "/webhdfs/v1/#{dir}?op=LISTSTATUS", {
@@ -89,7 +106,8 @@ module MyAzure
             return JSON.parse response.read_body
         end
 
-        ## Displays the contents of the file path specified
+        # Displays the contents of the file path specified
+        # @param file_path [String] the path to the file in the Azure Data Lake
         def open_file(file_path)
                 response = HTTParty.get("https://#{accountName}.azuredatalakestore.net" +
                     "/webhdfs/v1/#{file_path}?op=OPEN", {
@@ -110,7 +128,8 @@ module MyAzure
                 return response.read_body
         end
 
-                ## Displays content summary of the given file path
+                # Displays content summary of the given file path 
+                # @param file_path [String] the path to the file in the Azure Data Lake
                 def get_file_summary(file_path)
                     response = HTTParty.get("https://#{accountName}.azuredatalakestore.net" +
                         "/webhdfs/v1/#{file_path}?op=GETCONTENTSUMMARY", {
@@ -376,8 +395,7 @@ module MyAzure
 
 
 
-                
-            end
+      end
 
 end
 
