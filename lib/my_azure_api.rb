@@ -153,6 +153,57 @@ module MyAzure
             return JSON.parse response.read_body
         end
 
+        def create(filename, file, overwrite, category, source, type)
+            # Create hierarchical directoy based on current time for
+            # data lake organization.
+            _time = Time.new
+            # Adds 0 before digit if less than ten (03, 04, 10).
+            if _time.month < 10
+                _m = "0#{_time.month}"
+            else
+                _m = _time.month
+            end
+            if _time.day < 10
+                _d = "0#{_time.day}"
+            else
+                _d = _time.day
+            end
+
+            _n_dir_path = "/landing_zone/#{category}/#{source}/#{type}"+
+              "/year=#{_time.year}/month=#{_m}/day=#{_d}/"
+            self.mkdir(_n_dir_path, 777)
+            filename = "#{_n_dir_path}/#{filename}"
+
+            # Execute request.
+            response = HTTParty.put("https://#{accountName}.azuredatalakestore.net" +
+                "/webhdfs/v1/#{filename}?op=CREATE"+
+                "&overwrite=#{overwrite}", {
+                    headers: {
+                        "Authorization" => "Bearer #{bearerToken}",
+                        "Accept" => "*/*",
+                        "Cache-Control" => 'no-cache',
+                        "Host" => "#{accountName}.azuredatalakestore.net",
+                        "Connection" => 'keep-alive',
+                        "cache-control" => 'no-cache',
+                        "accept-encoding" => 'gzip, deflate',
+                        "referer" => "https://#{accountName}.azuredatalakestore.net"+
+                            "/webhdfs/v1/#{filename}?op=CREATE&overwrite=#{overwrite}",
+                    },
+                    verify: true
+            })
+
+            chunk_size = 4 * 1024 * 1024
+            count = 1
+            until file.eof?
+              puts "uploading file_chunk #{count}"
+              file_chunk = file.read(chunk_size)
+              append(filename, file_chunk)
+              count += 1
+            end
+
+            puts "the response has a code of #{response.code}"
+            puts "File uploaded"
+        end
 
         def append(filename, content)
             # Execute request.
