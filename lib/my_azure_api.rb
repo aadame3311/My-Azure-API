@@ -57,9 +57,9 @@ module MyAzure
         # to be used for authentication.
         def auth_bearer
             response = HTTParty.get("https://login.microsoftonline.com"+
-                "/#{tenantId}/oauth2/token", {
-                    body: "grant_type=client_credentials&client_id=#{clientId}"+
-                        "&client_secret=#{clientSecret}"+
+                                    "/#{MyAzure.get_tenant_id}/oauth2/token", {
+              body: "grant_type=client_credentials&client_id=#{MyAzure.get_client_id}"+
+                "&client_secret=#{MyAzure.get_client_secret}"+
                         "&resource=https%3A%2F%2Fmanagement.azure.com%2F" +
                         "&Content-Type=application/x-www-form-urlencoded"
             })
