@@ -371,6 +371,7 @@
       <pre class="lines">
 
 
+75
 76
 77
 78
@@ -380,19 +381,18 @@
 82
 83
 84
-85
-86</pre>
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_accountName'>accountName</span><span class='rparen'>)</span>
     <span class='ivar'>@accountName</span> <span class='op'>=</span> <span class='id identifier rubyid_accountName'>accountName</span>
-    <span class='ivar'>@resource</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_resource'>get_resource</span>
-    <span class='ivar'>@tenantId</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_tenant_id'>get_tenant_id</span>
-    <span class='ivar'>@clientId</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_client_id'>get_client_id</span>
-    <span class='ivar'>@clientSecret</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_client_secret'>get_client_secret</span>
-    <span class='ivar'>@subscriptionId</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_subscription_id'>get_subscription_id</span>
+    <span class='ivar'>@resource</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_resource'><span class='object_link'><a href="../MyAzure.html#get_resource-class_method" title="MyAzure.get_resource (method)">get_resource</a></span></span>
+    <span class='ivar'>@tenantId</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_tenant_id'><span class='object_link'><a href="../MyAzure.html#get_tenant_id-class_method" title="MyAzure.get_tenant_id (method)">get_tenant_id</a></span></span>
+    <span class='ivar'>@clientId</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_client_id'><span class='object_link'><a href="../MyAzure.html#get_client_id-class_method" title="MyAzure.get_client_id (method)">get_client_id</a></span></span>
+    <span class='ivar'>@clientSecret</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_client_secret'><span class='object_link'><a href="../MyAzure.html#get_client_secret-class_method" title="MyAzure.get_client_secret (method)">get_client_secret</a></span></span>
+    <span class='ivar'>@subscriptionId</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../MyAzure.html" title="MyAzure (module)">MyAzure</a></span></span><span class='period'>.</span><span class='id identifier rubyid_get_subscription_id'><span class='object_link'><a href="../MyAzure.html#get_subscription_id-class_method" title="MyAzure.get_subscription_id (method)">get_subscription_id</a></span></span>
     
     <span class='comment'># Generate bearer token.
 </span>    <span class='ivar'>@bearerToken</span> <span class='op'>=</span> <span class='id identifier rubyid_auth_bearer'>auth_bearer</span>
@@ -471,6 +471,7 @@
       <pre class="lines">
 
 
+239
 240
 241
 242
@@ -491,11 +492,10 @@
 257
 258
 259
-260
-261</pre>
+260</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 240</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 239</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_append'>append</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='comma'>,</span> <span class='id identifier rubyid_content'>content</span><span class='rparen'>)</span>
     <span class='comment'># Execute request.
@@ -650,6 +650,7 @@
       <pre class="lines">
 
 
+184
 185
 186
 187
@@ -699,11 +700,10 @@
 231
 232
 233
-234
-235</pre>
+234</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 185</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 184</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_overwrite'>overwrite</span><span class='comma'>,</span> <span class='id identifier rubyid_category'>category</span><span class='comma'>,</span> <span class='id identifier rubyid_source'>source</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
     <span class='comment'># Create hierarchical directoy based on current time for
@@ -807,6 +807,7 @@
       <pre class="lines">
 
 
+156
 157
 158
 159
@@ -824,11 +825,10 @@
 171
 172
 173
-174
-175</pre>
+174</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 157</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 156</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_file_status'>get_file_status</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
@@ -900,6 +900,7 @@
       <pre class="lines">
 
 
+133
 134
 135
 136
@@ -917,11 +918,10 @@
 148
 149
 150
-151
-152</pre>
+151</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 134</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 133</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_file_summary'>get_file_summary</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='rparen'>)</span>
         <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
@@ -993,6 +993,7 @@
       <pre class="lines">
 
 
+89
 90
 91
 92
@@ -1010,11 +1011,10 @@
 104
 105
 106
-107
-108</pre>
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_list_status'>list_status</span><span class='lparen'>(</span><span class='id identifier rubyid_dir'>dir</span><span class='rparen'>)</span> 
     <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
@@ -1102,6 +1102,7 @@
       <pre class="lines">
 
 
+266
 267
 268
 269
@@ -1121,11 +1122,10 @@
 283
 284
 285
-286
-287</pre>
+286</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 267</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 266</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_mkdir'>mkdir</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_permissions'>permissions</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> 
@@ -1199,6 +1199,7 @@
       <pre class="lines">
 
 
+111
 112
 113
 114
@@ -1216,11 +1217,10 @@
 126
 127
 128
-129
-130</pre>
+129</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 112</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 111</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_open_file'>open_file</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='rparen'>)</span>
         <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
@@ -1251,7 +1251,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Jul 18 09:31:46 2019 by
+  Generated on Thu Jul 18 10:41:00 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.3).
 </div>

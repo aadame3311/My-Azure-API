@@ -9,7 +9,24 @@ require 'time'
 module MyAzure
     include HTTParty
 
-    private 
+    public
+
+    # User must first call this function with the proper credentinals before
+    # making any API calls.
+    # @param tenant [String] the tenant id for the Azure Data Lake
+    # @param client [String] the client id for the Azure Data Lake
+    # @param secret [String] the secret id for the Azure Data Lake
+    # @param subscription [String] the subsription id that the Azure Data Lake is under
+    # @return [JSON]
+    def self.set_credentials(tenant, client, secret, subscription)
+        @@tenantId = tenant
+        @@clientId = client
+        @@clientSecret = secret
+        @@subscriptionId = subscription
+    end
+
+
+
     @@resource = "https://management.azure.com"
 
     def self.get_resource()
@@ -27,6 +44,7 @@ module MyAzure
     def self.get_subscription_id()
         @@subscriptionId
     end
+<<<<<<< HEAD
     def self.get_resourceGroupName()
         @@resourceGroupName
     end
@@ -48,22 +66,29 @@ module MyAzure
     end
 
 
+=======
+>>>>>>> c83989bee35e07ec2ddcd3b12f41f4bd96eede0d
 
     # ADLS Gen 1 service Api calls
     # This Class handles all the File System API for the Azure Data Lake
     class ADLS 
     private
         attr_reader :resource, :tenantId, :clientId
+<<<<<<< HEAD
         attr_reader :clientSecret, :subscriptionId
         attr_reader :bearerToken, :accountName, :resourceGroupName
+=======
+        attr_reader :clientSecret, :subcriptionId
+        attr_reader :bearerToken, :accountName
+>>>>>>> c83989bee35e07ec2ddcd3b12f41f4bd96eede0d
         
         # Post request to login azure, returns bearer token 
         # to be used for authentication.
         def auth_bearer
             response = HTTParty.get("https://login.microsoftonline.com"+
-                "/#{tenantId}/oauth2/token", {
-                    body: "grant_type=client_credentials&client_id=#{clientId}"+
-                        "&client_secret=#{clientSecret}"+
+                                    "/#{MyAzure.get_tenant_id}/oauth2/token", {
+              body: "grant_type=client_credentials&client_id=#{MyAzure.get_client_id}"+
+                "&client_secret=#{MyAzure.get_client_secret}"+
                         "&resource=https%3A%2F%2Fmanagement.azure.com%2F" +
                         "&Content-Type=application/x-www-form-urlencoded"
             })
@@ -213,10 +238,10 @@ module MyAzure
         def create(filename, file, overwrite, category, source, type)
             # Create hierarchical directoy based on current time for
             # data lake organization.
-            _time = Time.new<
+            _time = Time.new
             # Adds 0 before digit if less than ten (03, 04, 10).
             if _time.month < 10
-                _m = "0#{_tim<e.month}"
+                _m = "0#{_time.month}"
             else
                 _m = _time.month
             end
