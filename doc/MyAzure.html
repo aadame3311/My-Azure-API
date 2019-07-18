@@ -131,7 +131,7 @@ Has API calls for managing users, groups, and permission in the GRAPH class.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_credentials-class_method" title="set_credentials (class method)">.<strong>set_credentials</strong>(tenant, client, secret, subscription)  &#x21d2; Object </a>
+      <a href="#set_credentials-class_method" title="set_credentials (class method)">.<strong>set_credentials</strong>(tenant, client, secret, subscription)  &#x21d2; JSON </a>
     
 
     
@@ -165,7 +165,7 @@ Has API calls for managing users, groups, and permission in the GRAPH class.
       <div class="method_details first">
   <h3 class="signature first" id="set_credentials-class_method">
   
-    .<strong>set_credentials</strong>(tenant, client, secret, subscription)  &#x21d2; <tt>Object</tt> 
+    .<strong>set_credentials</strong>(tenant, client, secret, subscription)  &#x21d2; <tt>JSON</tt> 
   
 
   
@@ -249,6 +249,19 @@ Has API calls for managing users, groups, and permission in the GRAPH class.
   
 </ul>
 
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>JSON</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -256,15 +269,15 @@ Has API calls for managing users, groups, and permission in the GRAPH class.
       <pre class="lines">
 
 
-39
 40
 41
 42
 43
-44</pre>
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_set_credentials'>set_credentials</span><span class='lparen'>(</span><span class='id identifier rubyid_tenant'>tenant</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span><span class='comma'>,</span> <span class='id identifier rubyid_secret'>secret</span><span class='comma'>,</span> <span class='id identifier rubyid_subscription'>subscription</span><span class='rparen'>)</span>
     <span class='cvar'>@@tenantId</span> <span class='op'>=</span> <span class='id identifier rubyid_tenant'>tenant</span>
@@ -282,7 +295,7 @@ Has API calls for managing users, groups, and permission in the GRAPH class.
 </div>
 
       <div id="footer">
-  Generated on Wed Jul 17 16:56:00 2019 by
+  Generated on Thu Jul 18 09:31:46 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.3).
 </div>

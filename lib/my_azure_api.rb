@@ -36,6 +36,7 @@ module MyAzure
     # @param client [String] the client id for the Azure Data Lake
     # @param secret [String] the secret id for the Azure Data Lake
     # @param subscription [String] the subsription id that the Azure Data Lake is under
+    # @return [JSON]
     def self.set_credentials(tenant, client, secret, subscription)
         @@tenantId = tenant
         @@clientId = client
@@ -151,7 +152,8 @@ module MyAzure
             end
 
 
-        ## list information on a single file.
+        # list information on a single file.
+        # @param file_path [String] the path to the file in the Azure Data Lake
         def get_file_status(file_path)
             response = HTTParty.get("https://#{accountName}.azuredatalakestore.net" +
                 "/webhdfs/v1/#{file_path}?op=GETFILESTATUS", {
@@ -172,13 +174,21 @@ module MyAzure
             return JSON.parse response.read_body
         end
 
+        # creates new files in the Azure Data Lake
+        # @param filename [String] the filename (without path)
+        # @param file [File | StringIO | (Classes with the methods .read(size), .eof? )] the file to be uploaded to ADLS
+        # @param overwrite [Boolean] if file exist overwrite it
+        # @param category [String] the category of data the file contains
+        # @param source [String] from which desitination is the data ariving
+        # from
+        # @param type [String] the type of data
         def create(filename, file, overwrite, category, source, type)
             # Create hierarchical directoy based on current time for
             # data lake organization.
-            _time = Time.new
+            _time = Time.new<
             # Adds 0 before digit if less than ten (03, 04, 10).
             if _time.month < 10
-                _m = "0#{_time.month}"
+                _m = "0#{_tim<e.month}"
             else
                 _m = _time.month
             end
@@ -224,10 +234,13 @@ module MyAzure
             puts "File uploaded"
         end
 
-        def append(filename, content)
+        # appends data to a file on the Azure Data Lake
+        # @param file_path [String] the path to file in the Azure Data Lake
+        # @param content [String] the data to append to the file
+        def append(file_path, content)
             # Execute request.
             response = HTTParty.post("https://#{accountName}.azuredatalakestore.net" + 
-                "/webhdfs/v1/#{filename}?op=APPEND", {
+                "/webhdfs/v1/#{file_path}?op=APPEND", {
                     body: content,
                     headers: {
                         "Authorization" => "Bearer #{bearerToken}",
@@ -238,7 +251,7 @@ module MyAzure
                         "cache-control" => 'no-cache',
                         "accept-encoding" => 'gzip, deflate',
                         "referer" => "https://#{accountName}.azuredatalakestore.net"+
-                            "/webhdfs/v1/#{filename}?op=APPEND",
+                            "/webhdfs/v1/#{file_path}?op=APPEND",
                     },
                     verify: true
             })
@@ -246,11 +259,15 @@ module MyAzure
             puts "the response has a code of #{response.code}"
             puts "File uploaded"
         end
+        
         # Creates directories.
-        def mkdir(path, permisions)
+        # @param path [String] the path of directory to create
+        # @param permissions [Integer] work the same as *nix file system
+        # permissions
+        def mkdir(path, permissions)
           response = HTTParty.put("https://#{accountName}.azuredatalakestore.net" + 
                                   "/webhdfs/v1/#{path}?op=MKDIRS" + 
-                                  "&permission=#{permisions}", {
+                                  "&permission=#{permissions}", {
                     body: "grant_type=client_credentials&client_id=#{clientId}"+
                         "&client_secret=#{clientSecret}"+
                         "&resource=https%3A%2F%2Fmanagement.azure.com%2F",
@@ -292,6 +309,7 @@ module MyAzure
                 end
         
             public
+                # creates an instance of the GRAPH API
                 def initialize()
                     @tenantId = MyAzure.get_tenant_id
                     @clientId = MyAzure.get_client_id
@@ -302,7 +320,7 @@ module MyAzure
                  
                 end
                 
-                ## Displays a list of users in the active directory
+                # Displays a list of users in the active directory
                 def list_users()
                         response = HTTParty.get("https://graph.microsoft.com/v1.0/users", {  
                         headers: {
@@ -313,7 +331,7 @@ module MyAzure
                     return JSON.parse response.read_body
                 end
         
-                ## Displays the of the active directory
+                # Displays the of the active directory
                 def list_groups()
                         response = HTTParty.get("https://graph.microsoft.com/v1.0/groups", {  
                         headers: {
@@ -324,7 +342,8 @@ module MyAzure
                     return JSON.parse response.read_body
                 end
         
-                ## Displays the of the active directory
+                # Displays the members in a Azure Active Directory group
+                # param dept_id [String]  department id for the group
                 def list_group_members(dept_id)
                         response = HTTParty.get("https://graph.microsoft.com/v1.0/groups/#{dept_id}/members", {  
                         headers: {
@@ -335,9 +354,10 @@ module MyAzure
                     return JSON.parse response.read_body
                 end
 
-                ## Adds a member to an active directory group given the department and user id
-                ## Returns response code 204 no content if request is successful
-                ## Returns response code 400 bad request if request failed or user already in group
+                # Adds a member to an Azure Active Directory group
+                # @param dept_id [String] the deparment id for the group
+                # @param user_id [String] the id for the user to add
+                # @return [Integer] the status code of the response 200 if successful or 400 if user already exist in group
                 def add_group_member(dept_id, user_id)
 
                         user_create = {
@@ -367,8 +387,9 @@ module MyAzure
                 end
 
                 ## Removes a member from an active directory group given the department and user id
-                ## Returns response code 204 no content if request is successful
-                ## Returns response code 400 bad request if request failed and shows json response
+                # @param dept_id [String] the deparment id for the group
+                # @param user_id [String] the id for the user to add
+                # @return [Integer] the status code of the response 200 if successful or 400 if user already exist in group
                 def remove_group_member(dept_id, user_id)
 
                     user_create = {

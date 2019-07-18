@@ -128,7 +128,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#append-instance_method" title="#append (instance method)">#<strong>append</strong>(filename, content)  &#x21d2; Object </a>
+      <a href="#append-instance_method" title="#append (instance method)">#<strong>append</strong>(file_path, content)  &#x21d2; Object </a>
     
 
     
@@ -142,7 +142,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>appends data to a file on the Azure Data Lake.</p>
+</div></span>
   
 </li>
 
@@ -164,7 +166,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>creates new files in the Azure Data Lake from.</p>
+</div></span>
   
 </li>
 
@@ -270,7 +274,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#mkdir-instance_method" title="#mkdir (instance method)">#<strong>mkdir</strong>(path, permisions)  &#x21d2; Object </a>
+      <a href="#mkdir-instance_method" title="#mkdir (instance method)">#<strong>mkdir</strong>(path, permissions)  &#x21d2; Object </a>
     
 
     
@@ -367,7 +371,6 @@
       <pre class="lines">
 
 
-75
 76
 77
 78
@@ -377,10 +380,11 @@
 82
 83
 84
-85</pre>
+85
+86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_accountName'>accountName</span><span class='rparen'>)</span>
     <span class='ivar'>@accountName</span> <span class='op'>=</span> <span class='id identifier rubyid_accountName'>accountName</span>
@@ -408,31 +412,65 @@
       <div class="method_details first">
   <h3 class="signature first" id="append-instance_method">
   
-    #<strong>append</strong>(filename, content)  &#x21d2; <tt>Object</tt> 
+    #<strong>append</strong>(file_path, content)  &#x21d2; <tt>Object</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>appends data to a file on the Azure Data Lake</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>file_path</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the path to file in the Azure Data Lake</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>content</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the data to append to the file</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-227
-228
-229
-230
-231
-232
-233
-234
-235
-236
-237
-238
-239
 240
 241
 242
@@ -441,15 +479,28 @@
 245
 246
 247
-248</pre>
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 227</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 240</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_append'>append</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span> <span class='id identifier rubyid_content'>content</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_append'>append</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='comma'>,</span> <span class='id identifier rubyid_content'>content</span><span class='rparen'>)</span>
     <span class='comment'># Execute request.
 </span>    <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> 
-        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/webhdfs/v1/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_filename'>filename</span><span class='embexpr_end'>}</span><span class='tstring_content'>?op=APPEND</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/webhdfs/v1/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_file_path'>file_path</span><span class='embexpr_end'>}</span><span class='tstring_content'>?op=APPEND</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
             <span class='label'>body:</span> <span class='id identifier rubyid_content'>content</span><span class='comma'>,</span>
             <span class='label'>headers:</span> <span class='lbrace'>{</span>
                 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Authorization</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bearer </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bearerToken'>bearerToken</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
@@ -460,7 +511,7 @@
                 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cache-control</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no-cache</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
                 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>accept-encoding</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>gzip, deflate</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
                 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>referer</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
-                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/webhdfs/v1/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_filename'>filename</span><span class='embexpr_end'>}</span><span class='tstring_content'>?op=APPEND</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/webhdfs/v1/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_file_path'>file_path</span><span class='embexpr_end'>}</span><span class='tstring_content'>?op=APPEND</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
             <span class='rbrace'>}</span><span class='comma'>,</span>
             <span class='label'>verify:</span> <span class='kw'>true</span>
     <span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -482,22 +533,123 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>creates new files in the Azure Data Lake from</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>filename</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the filename (without path)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>file</span>
+      
+      
+        <span class='type'>(<tt>File | StringIO | (Classes with the methods .read(size), .eof? )</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the file to be uploaded to ADLS</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>overwrite</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if file exist overwrite it</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>category</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the category of data the file contains</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>source</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>from which desitination is the data ariving</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>type</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the type of data</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-175
-176
-177
-178
-179
-180
-181
-182
-183
-184
 185
 186
 187
@@ -538,18 +690,28 @@
 222
 223
 224
-225</pre>
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 175</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 185</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_overwrite'>overwrite</span><span class='comma'>,</span> <span class='id identifier rubyid_category'>category</span><span class='comma'>,</span> <span class='id identifier rubyid_source'>source</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
     <span class='comment'># Create hierarchical directoy based on current time for
 </span>    <span class='comment'># data lake organization.
-</span>    <span class='id identifier rubyid__time'>_time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+</span>    <span class='id identifier rubyid__time'>_time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='op'>&lt;</span>
     <span class='comment'># Adds 0 before digit if less than ten (03, 04, 10).
 </span>    <span class='kw'>if</span> <span class='id identifier rubyid__time'>_time</span><span class='period'>.</span><span class='id identifier rubyid_month'>month</span> <span class='op'>&lt;</span> <span class='int'>10</span>
-        <span class='id identifier rubyid__m'>_m</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__time'>_time</span><span class='period'>.</span><span class='id identifier rubyid_month'>month</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid__m'>_m</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__tim'>_tim</span><span class='op'>&lt;</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_month'>month</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>else</span>
         <span class='id identifier rubyid__m'>_m</span> <span class='op'>=</span> <span class='id identifier rubyid__time'>_time</span><span class='period'>.</span><span class='id identifier rubyid_month'>month</span>
     <span class='kw'>end</span>
@@ -617,7 +779,27 @@
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>file_path</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the path to the file in the Azure Data Lake</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -625,8 +807,6 @@
       <pre class="lines">
 
 
-155
-156
 157
 158
 159
@@ -643,10 +823,12 @@
 170
 171
 172
-173</pre>
+173
+174
+175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 155</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 157</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_file_status'>get_file_status</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
@@ -718,7 +900,6 @@
       <pre class="lines">
 
 
-133
 134
 135
 136
@@ -736,10 +917,11 @@
 148
 149
 150
-151</pre>
+151
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_file_summary'>get_file_summary</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='rparen'>)</span>
         <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
@@ -811,7 +993,6 @@
       <pre class="lines">
 
 
-89
 90
 91
 92
@@ -829,10 +1010,11 @@
 104
 105
 106
-107</pre>
+107
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 90</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_list_status'>list_status</span><span class='lparen'>(</span><span class='id identifier rubyid_dir'>dir</span><span class='rparen'>)</span> 
     <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
@@ -861,7 +1043,7 @@
       <div class="method_details ">
   <h3 class="signature " id="mkdir-instance_method">
   
-    #<strong>mkdir</strong>(path, permisions)  &#x21d2; <tt>Object</tt> 
+    #<strong>mkdir</strong>(path, permissions)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -870,13 +1052,49 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Creates directories.</p>
+<p>Creates directories. permissions</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>path</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the path of directory to create</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>permissions</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>work the same as *nix file system</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -884,35 +1102,35 @@
       <pre class="lines">
 
 
-250
-251
-252
-253
-254
-255
-256
-257
-258
-259
-260
-261
-262
-263
-264
-265
-266
 267
 268
 269
-270</pre>
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 250</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 267</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_mkdir'>mkdir</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_permisions'>permisions</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_mkdir'>mkdir</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_permissions'>permissions</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> 
                           <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/webhdfs/v1/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path'>path</span><span class='embexpr_end'>}</span><span class='tstring_content'>?op=MKDIRS</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> 
-                          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;permission=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_permisions'>permisions</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+                          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;permission=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_permissions'>permissions</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
             <span class='label'>body:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>grant_type=client_credentials&amp;client_id=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_clientId'>clientId</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
                 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;client_secret=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_clientSecret'>clientSecret</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
                 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;resource=https%3A%2F%2Fmanagement.azure.com%2F</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
@@ -981,7 +1199,6 @@
       <pre class="lines">
 
 
-111
 112
 113
 114
@@ -999,10 +1216,11 @@
 126
 127
 128
-129</pre>
+129
+130</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'lib/my_azure_api.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_open_file'>open_file</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='rparen'>)</span>
         <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>HTTParty</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_accountName'>accountName</span><span class='embexpr_end'>}</span><span class='tstring_content'>.azuredatalakestore.net</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
@@ -1033,7 +1251,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed Jul 17 16:56:00 2019 by
+  Generated on Thu Jul 18 09:31:46 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.20 (ruby-2.6.3).
 </div>
