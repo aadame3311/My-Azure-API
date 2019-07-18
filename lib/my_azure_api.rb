@@ -9,7 +9,7 @@ require 'time'
 module MyAzure
     include HTTParty
 
-    private 
+    public
     @@resource = "https://management.azure.com"
 
     def self.get_resource()
@@ -29,7 +29,6 @@ module MyAzure
     end
 
 
-    public
     # User must first call this function with the proper credentinals before
     # making any API calls.
     # @param tenant [String] the tenant id for the Azure Data Lake
