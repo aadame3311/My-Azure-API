@@ -184,7 +184,7 @@ module MyAzure
         def create(filename, file, overwrite, category, source, type)
             # Create hierarchical directoy based on current time for
             # data lake organization.
-            _time = Time.new<
+            _time = Time.new
             # Adds 0 before digit if less than ten (03, 04, 10).
             if _time.month < 10
                 _m = "0#{_tim<e.month}"
