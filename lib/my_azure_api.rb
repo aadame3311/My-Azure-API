@@ -45,14 +45,36 @@ module MyAzure
         @@subscriptionId
     end
 
+    def self.get_resourceGroupName()
+        @@resourceGroupName
+    end
+
+    public
+    # User must first call this function with the proper credentinals before
+    # making any API calls.
+    # @param tenant [String] the tenant id for the Azure Data Lake
+    # @param client [String] the client id for the Azure Data Lake
+    # @param secret [String] the secret id for the Azure Data Lake
+    # @param subscription [String] the subsription id that the Azure Data Lake is under
+    # @return [JSON]
+    def self.set_credentials(tenant, client, secret, subscription, resourceGroupName)
+        @@tenantId = tenant
+        @@clientId = client
+        @@clientSecret = secret
+        @@subscriptionId = subscription
+        @@resourceGroupName = resourceGroupName
+    end
+
+
+
     # ADLS Gen 1 service Api calls
     # This Class handles all the File System API for the Azure Data Lake
     class ADLS 
     private
         attr_reader :resource, :tenantId, :clientId
-        attr_reader :clientSecret, :subcriptionId
-        attr_reader :bearerToken, :accountName
-        
+        attr_reader :clientSecret, :subscriptionId
+        attr_reader :bearerToken, :accountName, :resourceGroupName
+  
         # Post request to login azure, returns bearer token 
         # to be used for authentication.
         def auth_bearer
@@ -79,10 +101,34 @@ module MyAzure
             @clientId = MyAzure.get_client_id
             @clientSecret = MyAzure.get_client_secret
             @subscriptionId = MyAzure.get_subscription_id
+            @resourceGroupName = MyAzure.get_resourceGroupName
             
             # Generate bearer token.
             @bearerToken = auth_bearer
         end
+
+
+        # Get information for specified Data Lake Storage Gen1 account
+        # Returns response code 200 ok if successfully retrieved account information
+
+        def get_account_info() 
+            response = HTTParty.get("https://management.azure.com/subscriptions/#{subscriptionId}/resourceGroups/#{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/#{accountName}?api-version=2016-11-01", {
+
+                    headers: {
+                        "Authorization" => "Bearer " + @bearerToken,
+                        "Accept" => "*/*",
+                        "Cache-Control" => 'no-cache',
+                        #"Host" => "#{accountName}.azuredatalakestore.net",
+                        "Connection" => 'keep-alive',
+                        "cache-control" => 'no-cache'
+                    },
+              
+                    verify: true,
+            })
+
+            return  JSON.parse response.read_body
+        end
+
 
         # list information on all files under the specified dir.
         # @param dir [String] the directory path in Azure Data Lake
