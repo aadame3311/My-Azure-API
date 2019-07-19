@@ -44,7 +44,7 @@ module MyAzure
     def self.get_subscription_id()
         @@subscriptionId
     end
-<<<<<<< HEAD
+
     def self.get_resourceGroupName()
         @@resourceGroupName
     end
@@ -66,22 +66,15 @@ module MyAzure
     end
 
 
-=======
->>>>>>> c83989bee35e07ec2ddcd3b12f41f4bd96eede0d
 
     # ADLS Gen 1 service Api calls
     # This Class handles all the File System API for the Azure Data Lake
     class ADLS 
     private
         attr_reader :resource, :tenantId, :clientId
-<<<<<<< HEAD
         attr_reader :clientSecret, :subscriptionId
         attr_reader :bearerToken, :accountName, :resourceGroupName
-=======
-        attr_reader :clientSecret, :subcriptionId
-        attr_reader :bearerToken, :accountName
->>>>>>> c83989bee35e07ec2ddcd3b12f41f4bd96eede0d
-        
+  
         # Post request to login azure, returns bearer token 
         # to be used for authentication.
         def auth_bearer
@@ -120,9 +113,7 @@ module MyAzure
 
         def get_account_info() 
             response = HTTParty.get("https://management.azure.com/subscriptions/#{subscriptionId}/resourceGroups/#{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/#{accountName}?api-version=2016-11-01", {
-                    body: "grant_type=client_credentials&client_id=#{clientId}"+
-                        "&client_secret=#{clientSecret}"+
-                        "&resource=https%3A%2F%2Fmanagement.azure.com%2F",
+
                     headers: {
                         "Authorization" => "Bearer " + @bearerToken,
                         "Accept" => "*/*",
@@ -131,10 +122,11 @@ module MyAzure
                         "Connection" => 'keep-alive',
                         "cache-control" => 'no-cache'
                     },
+              
                     verify: true,
             })
 
-            return JSON.parse response.read_body
+            return  JSON.parse response.read_body
         end
 
 
