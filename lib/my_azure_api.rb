@@ -181,6 +181,7 @@ module MyAzure
         # @param source [String] from which desitination is the data ariving
         # from
         # @param type [String] the type of data
+        # @return [Integer] status code 200 if sucessful
         def create(filename, file, overwrite, category, source, type)
             # Create hierarchical directoy based on current time for
             # data lake organization.
@@ -231,11 +232,15 @@ module MyAzure
 
             puts "the response has a code of #{response.code}"
             puts "File uploaded"
+
+            
+            return response.code
         end
 
         # appends data to a file on the Azure Data Lake
         # @param file_path [String] the path to file in the Azure Data Lake
         # @param content [String] the data to append to the file
+        # @return [Integer] status code 200 if sucessful
         def append(file_path, content)
             # Execute request.
             response = HTTParty.post("https://#{accountName}.azuredatalakestore.net" + 
@@ -257,6 +262,8 @@ module MyAzure
             puts response.body
             puts "the response has a code of #{response.code}"
             puts "File uploaded"
+
+            response.code
         end
         
         # Creates directories.
