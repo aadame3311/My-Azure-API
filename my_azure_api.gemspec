@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'my_azure_api'
-  s.version     = '0.0.0'
+  s.version     = '0.0.1'
   s.date        = '2010-04-28'
   s.summary     = "API for connecting to DL gen 1"
   s.description = "if you know you know"
