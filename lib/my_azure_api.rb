@@ -78,12 +78,11 @@ module MyAzure
         # Post request to login azure, returns bearer token 
         # to be used for authentication.
         def auth_bearer
-            response = HTTParty.get("https://login.microsoftonline.com"+
-                                    "/#{MyAzure.get_tenant_id}/oauth2/token", {
+            response = HTTParty.get("https://login.microsoftonline.com" + "/#{MyAzure.get_tenant_id}/oauth2/token", {
               body: "grant_type=client_credentials&client_id=#{MyAzure.get_client_id}"+
-                "&client_secret=#{MyAzure.get_client_secret}"+
-                        "&resource=https%3A%2F%2Fmanagement.azure.com%2F" +
-                        "&Content-Type=application/x-www-form-urlencoded"
+                    "&client_secret=#{MyAzure.get_client_secret}"+
+                    "&resource=https%3A%2F%2Fmanagement.azure.com%2F"+
+                    "&Content-Type=application/x-www-form-urlencoded"
             })
 
             parsed_json = JSON.parse response.read_body
@@ -110,15 +109,130 @@ module MyAzure
 
         # Get information for specified Data Lake Storage Gen1 account
         # Returns response code 200 ok if successfully retrieved account information
-
-        def get_account_info() 
-            response = HTTParty.get("https://management.azure.com/subscriptions/#{subscriptionId}/resourceGroups/#{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/#{accountName}?api-version=2016-11-01", {
+        def get_gen1_account_info(name) 
+            response = HTTParty.get("https://management.azure.com/subscriptions/#{subscriptionId}/resourceGroups/#{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/#{name}?api-version=2016-11-01", {
 
                     headers: {
-                        "Authorization" => "Bearer " + @bearerToken,
-                        "Accept" => "*/*",
+                        "Authorization" => "Bearer #{bearerToken}",
+                        "Accept" => '*/*',
                         "Cache-Control" => 'no-cache',
-                        #"Host" => "#{accountName}.azuredatalakestore.net",
+                        "Connection" => 'keep-alive',
+                        "cache-control" => 'no-cache'
+                    },
+              
+                    verify: true,
+            })
+
+            return  JSON.parse response.read_body
+        end
+
+        # Get information for specified Data Lake Storage Gen1 account
+        # Returns response code 200 ok if successfully retrieved account information
+        def get_datafactory_info(name) 
+            response = HTTParty.get("https://management.azure.com/subscriptions/#{subscriptionId}/resourceGroups/#{resourceGroupName}/providers/Microsoft.DataFactory/factories/#{name}?api-version=2018-06-01", {
+
+                    headers: {
+                        "Authorization" => "Bearer #{bearerToken}",
+                        "Accept" => '*/*',
+                        "Cache-Control" => 'no-cache',
+                        "Connection" => 'keep-alive',
+                        "cache-control" => 'no-cache'
+                    },
+              
+                    verify: true,
+            })
+
+            return  JSON.parse response.read_body
+        end
+
+        # Creates the specified Datafactory account
+        # Returns response code 200 ok if successfully created account
+        def create_datafactory(name) 
+
+            factory_create = {
+                "location": "centralus"
+              }
+
+            response = HTTParty.put("https://management.azure.com/subscriptions/#{subscriptionId}/resourceGroups/#{resourceGroupName}/providers/Microsoft.DataFactory/factories/#{name}?api-version=2018-06-01", {
+
+                    body: factory_create.to_json,
+
+                    headers: {
+                        "Authorization" => "Bearer #{bearerToken}",
+                        "Content-Type" => 'application/json', 
+                        "Accept" => '*/*',
+                        "Cache-Control" => 'no-cache',
+                        "Connection" => 'keep-alive',
+                        "cache-control" => 'no-cache'
+                    },
+              
+                    verify: true,
+            })
+
+            return  JSON.parse response.read_body
+        end
+
+
+        # Get information for all specified Data Lake Storage Gen1 accounts
+        # Returns response code 200 ok if successfully retrieved information from all accounts
+
+        def list_gen1_accounts() 
+            response = HTTParty.get("https://management.azure.com/subscriptions/#{subscriptionId}/providers/Microsoft.DataLakeStore/accounts?api-version=2016-11-01", {
+
+                    headers: {
+                        "Authorization" => "Bearer #{bearerToken}",
+                        "Accept" => '*/*',
+                        "Cache-Control" => 'no-cache',
+                        "Connection" => 'keep-alive',
+                        "cache-control" => 'no-cache'
+                    },
+              
+                    verify: true,
+            })
+
+            return  JSON.parse response.read_body
+        end
+        
+        # Creates the specified Data Lake Storage Gen1 account
+        # Returns response code 200 ok if successfully created account
+        def create_gen1_account(name) 
+
+            account_create = {
+                "location"=> "centralus",
+                "tags"=> {
+                    "test_key"=> "test_value"
+                },
+                "identity"=> {
+                    "type"=> "SystemAssigned"
+                },
+                "properties"=> {
+                    "encryptionState"=> "Enabled",
+                    "encryptionConfig"=> {
+                    "type"=> "ServiceManaged",
+                    },
+                    "firewallState"=> "Disabled",
+                    "firewallRules"=> [
+                  
+                    ],
+                    "trustedIdProviderState"=> "Disabled",
+                    "trustedIdProviders"=> [
+                   
+                    ],
+                
+                    "newTier"=> "Consumption",
+                    "firewallAllowAzureIps"=> "Enabled"
+                }
+            }
+
+            response = HTTParty.put("https://management.azure.com/subscriptions/#{subscriptionId}/resourceGroups/#{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/#{name}?api-version=2016-11-01", {
+
+                    body: account_create.to_json,
+
+                    headers: {
+                        "Authorization" => "Bearer #{bearerToken}",
+                        "Content-Type" => 'application/json', 
+                        "Accept" => '*/*',
+                        "Cache-Control" => 'no-cache',
                         "Connection" => 'keep-alive',
                         "cache-control" => 'no-cache'
                     },
@@ -139,8 +253,8 @@ module MyAzure
                         "&client_secret=#{clientSecret}"+
                         "&resource=https%3A%2F%2Fmanagement.azure.com%2F",
                     headers: {
-                        "Authorization" => "Bearer " + @bearerToken,
-                        "Accept" => "*/*",
+                        "Authorization" => "Bearer #{bearerToken}",
+                        "Accept" => '*/*',
                         "Cache-Control" => 'no-cache',
                         "Host" => "#{accountName}.azuredatalakestore.net",
                         "Connection" => 'keep-alive',
