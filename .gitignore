@@ -1,2 +1,3 @@
 InputFiles/*
-test.rb
+test_custom_api.rb
+test_azure_gems.rb
