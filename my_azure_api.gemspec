@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = "Services supported will include Azure Data Lake storage Gen1, Data Factory, and SQL Warehouse"
   s.authors     = ["Data Duck Developers"]
   s.email       = 'rogueoneteam@utrgv.edu'
-  s.files       = ["lib/my_azure_api.rb","lib/graph.rb", "lib/adls.rb"]
+  s.files       = ["lib/my_azure_api.rb","lib/active_directory.rb", "lib/data_lake_storage_gen1.rb", "lib/data_factory.rb"]
   s.homepage    =
     'https://github.com/aadame3311/My-Azure-API'
   s.license       = 'MIT'

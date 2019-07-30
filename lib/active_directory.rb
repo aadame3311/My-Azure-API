@@ -1,8 +1,7 @@
 require_relative 'my_azure_api.rb'
 
 #Microsoft Graph Api calls for Active Directory operations
-class GRAPH 
-
+class ACTIVE_DIRECTORY 
         include MyAzure
 
         private
@@ -10,29 +9,15 @@ class GRAPH
             attr_reader :clientSecret
             attr_reader :bearerToken
     
-            # Post request to login azure, returns bearer token 
-            # to be used for authentication in Active Directory.
-            def auth_bearer_aad
-                response = HTTParty.get("https://login.microsoftonline.com/#{tenantId}/oauth2/v2.0/token", {
-                        body: "grant_type=client_credentials&client_id=#{clientId}"+
-                            "&client_secret=#{clientSecret}"+
-                            "&scope=https%3A%2F%2Fgraph.microsoft.com%2F.default"
-                })
-    
-                parsed_json = JSON.parse response.read_body
-                return parsed_json["access_token"]
-            end
-    
         public
-            # creates an instance of the GRAPH API
+            # Creates an instance of the GRAPH API
             def initialize()
                 @tenantId = MyAzure.get_tenant_id
                 @clientId = MyAzure.get_client_id
                 @clientSecret = MyAzure.get_client_secret
                 
                 # Generate bearer token.
-                @bearerToken = auth_bearer_aad
-             
+                @bearerToken = MyAzure.auth_bearer_graph
             end
             
             # Displays a list of users in the active directory
@@ -58,7 +43,7 @@ class GRAPH
             end
     
             # Displays the members in a Azure Active Directory group
-            # param dept_id [String]  department id for the group
+            # Param dept_id [String] department id for the group
             def list_group_members(dept_id)
                     response = HTTParty.get("https://graph.microsoft.com/v1.0/groups/#{dept_id}/members", {  
                     headers: {
@@ -101,7 +86,7 @@ class GRAPH
             
             end
 
-            ## Removes a member from an active directory group given the department and user id
+            # Removes a member from an active directory group given the department and user id
             # @param dept_id [String] the deparment id for the group
             # @param user_id [String] the id for the user to add
             # @return [Integer] the status code of the response 200 if successful or 400 if user already exist in group
@@ -129,4 +114,4 @@ class GRAPH
         
             end
 
-end #end of Graph class
+end #End of Active Directory class

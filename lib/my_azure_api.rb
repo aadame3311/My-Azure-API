@@ -50,4 +50,30 @@ module MyAzure
         @@resourceGroupName
     end
 
+    # Post request to login azure, returns bearer token 
+    # to be used for authentication in Active Directory.
+    def self.auth_bearer_graph
+        response = HTTParty.get("https://login.microsoftonline.com/#{self.get_tenant_id}/oauth2/v2.0/token", {
+            body: "grant_type=client_credentials&client_id=#{self.get_client_id}"+
+                        "&client_secret=#{self.get_client_secret}"+
+                         "&scope=https%3A%2F%2Fgraph.microsoft.com%2F.default"
+        })
+    
+        parsed_json = JSON.parse response.read_body
+        return parsed_json["access_token"]
+    end
+
+    # Post request to login azure, returns bearer token to be used for authentication.
+    def self.auth_bearer_management
+        response = HTTParty.get("https://login.microsoftonline.com" + "/#{self.get_tenant_id}/oauth2/token", {
+            body: "grant_type=client_credentials&client_id=#{self.get_client_id}"+
+                        "&client_secret=#{self.get_client_secret}"+
+                        "&resource=https%3A%2F%2Fmanagement.azure.com%2F"+
+                        "&Content-Type=application/x-www-form-urlencoded"
+        })
+        
+        parsed_json = JSON.parse response.read_body
+        return parsed_json["access_token"]
+    end
+
 end #end of MyAzure Module

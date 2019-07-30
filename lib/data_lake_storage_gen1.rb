@@ -2,26 +2,13 @@ require_relative 'my_azure_api.rb'
 
 # ADLS Gen 1 service Api calls
 # This Class handles all the File System API for the Azure Data Lake
-    class ADLS
+    class DATA_LAKE_STORAGE_GEN1
         include MyAzure
 
         private
             attr_reader :resource, :tenantId, :clientId
             attr_reader :clientSecret, :subscriptionId
             attr_reader :bearerToken, :accountName, :resourceGroupName
-      
-            # Post request to login azure, returns bearer token to be used for authentication.
-            def auth_bearer
-                response = HTTParty.get("https://login.microsoftonline.com" + "/#{MyAzure.get_tenant_id}/oauth2/token", {
-                  body: "grant_type=client_credentials&client_id=#{MyAzure.get_client_id}"+
-                        "&client_secret=#{MyAzure.get_client_secret}"+
-                        "&resource=https%3A%2F%2Fmanagement.azure.com%2F"+
-                        "&Content-Type=application/x-www-form-urlencoded"
-                })
-    
-                parsed_json = JSON.parse response.read_body
-                return parsed_json["access_token"]
-            end
     
         public
             # To initialize an instance of ADLS all the is need is the name of the
@@ -37,7 +24,7 @@ require_relative 'my_azure_api.rb'
                 @resourceGroupName = MyAzure.get_resourceGroupName
                 
                 # Generate bearer token.
-                @bearerToken = auth_bearer
+                @bearerToken = MyAzure.auth_bearer_management
             end
     
     
